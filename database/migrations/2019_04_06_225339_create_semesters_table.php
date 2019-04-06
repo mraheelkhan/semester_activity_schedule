@@ -15,6 +15,12 @@ class CreateSemestersTable extends Migration
     {
         Schema::create('semesters', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('semester_title')->nullable();
+            $table->string('semester_year');
+            $table->string('semester_type');
+            $table->string('status');
+            $table->integer('created_by');
+            $table->integer('isDeleted');
             $table->timestamps();
         });
     }
