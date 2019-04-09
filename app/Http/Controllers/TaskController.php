@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\TaskResourceCollection;
 class TaskController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $all = Task::where('status', 1)->with('user')->with('semester')->get();
+        return response(new TaskResourceCollection($all));
     }
 
     /**

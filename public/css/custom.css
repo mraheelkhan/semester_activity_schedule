@@ -1,0 +1,74 @@
+/*custom css for the project*/
+
+/*generic tags*/
+h1 {
+    font-size: 22px;
+}
+/*featured available for sale*/
+.hot_title {
+    margin-top: 1px;
+}
+.tags_custom {
+    position: absolute;
+    bottom: 0px;
+    left: 19px;
+    top: unset;
+}
+
+/*menu header css*/
+.header_content {
+    background: #f3f3f3;
+}
+.submit a {
+    line-height: 42px;
+    font-size: 14px;
+}
+.header_content {
+    height: 40px;
+}
+.main_nav ul li a {
+    line-height: 40px;
+    font-size: 14px;
+}
+.header_bar {
+    height: 25px;
+}
+.social ul li a {
+    display: block;
+    height: 100%;
+    line-height: 19px;
+}
+.social ul li {
+    width: 24px;
+    height: 20px;
+    border-radius: 0px;
+}
+
+
+/*search code started here*/
+.search_title {
+    height: 56px;
+    font-size: 27px;
+    line-height: 56px;
+}
+.home_content {
+    padding-left: 47px;
+    padding-top: 12px;
+    padding-bottom: 23px;
+    padding-right: 50px;
+}
+.home_title h1 {
+    font-size: 18px;
+}
+
+/*featured listing*/
+.featured_row {
+    margin-top: 30px;
+}
+.listing_location {
+    padding-top: 34px;
+    padding-bottom: 8px;
+}
+.listing_location a {
+    font-size: 14px;
+}

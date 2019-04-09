@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Semester;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\SemesterResourceCollection;
 class SemesterController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class SemesterController extends Controller
      */
     public function index()
     {
-        //
+        $all = Semester::where('status', 'active')->get();
+        return response(new SemesterResourceCollection($all));
     }
 
     /**

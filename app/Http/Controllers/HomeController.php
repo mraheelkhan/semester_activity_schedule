@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use Session;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -25,4 +27,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+    }
+
+   
+
+    
 }

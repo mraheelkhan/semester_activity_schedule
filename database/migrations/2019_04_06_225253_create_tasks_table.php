@@ -19,9 +19,10 @@ class CreateTasksTable extends Migration
             $table->string('task_title');
             $table->string('task_type');
             $table->string('task_status');
-            $table->string('task_date');
+            $table->date('task_date');
             $table->date('task_due_date')->nullable();
             $table->string('isDeleted');
+            $table->string('status');
             $table->integer('created_by');
             $table->timestamps();
         });

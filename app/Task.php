@@ -3,8 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
+use App\Semester;
 class Task extends Model
 {
-    //
+    public function user(){
+        return $this->belongsTo('App\User', 'created_by', 'id');
+    }
+    public function semester(){
+        return $this->belongsTo('App\Semester');
+    }
 }
