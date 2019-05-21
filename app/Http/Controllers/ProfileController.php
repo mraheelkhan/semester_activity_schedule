@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Task;
 use Gate;
 class ProfileController extends Controller
 {
     public function dashboard(){
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
-            return view('profile.dashboard');
+            $data['events'] = Task::all();
+            return view('profile.dashboard')->with('data', $data);
         }
         return view('forbidden');
     }

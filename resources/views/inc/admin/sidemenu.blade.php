@@ -6,7 +6,7 @@
 -->
   <div class="logo">
   <a href="{{url('profile')}}" class="simple-text logo-normal">
-      Property Admin Panel
+      Semester Admin Panel
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -24,10 +24,16 @@
             </a>
           </li>
       <hr>
-      <li class="nav-item @if(Request::route()->getName() == 'ListingAreaList') active @endif">
-      <a class="nav-link" href="#">
+      <li class="nav-item @if(Request::route()->getName() == 'Semester') active @endif">
+      <a class="nav-link" href="{{Route('Semester')}}">
           <i class="material-icons">train</i>
           <p>Semesters</p>
+        </a>
+      </li>
+      <li class="nav-item @if(Request::route()->getName() == 'Task') active @endif">
+      <a class="nav-link" href="{{route('Task')}}">
+          <i class="material-icons">events</i>
+          <p>Tasks</p>
         </a>
       </li>
       <li class="nav-item @if(Request::route()->getName() == 'Profile') active @endif ">

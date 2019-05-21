@@ -17,6 +17,11 @@
 			</div>
 @endif
 </div>
+<style>
+.fc-view-container *, .fc-view-container :after, .fc-view-container :before
+{
+  /* color: white; */
+}</style>
 
 <div class="col-md-12">
         <div class="content">
@@ -29,7 +34,7 @@
                           
                         </div>
                         <div class="card-body">
-                          
+                            <div id='calendar'></div>
                         </div>
                       </div>
                     </div>
@@ -39,8 +44,49 @@
               </div>
 </div>
 
-
+@php
+ $array=[];
+ //dd($data['topReactTrulies']);
+ foreach($data['events'] as $row){
+        //echo date_format($row->event_date,"Y/m/d H:i:s"); 
+        $date =  date("d-m-Y", strtotime($row->task_date));
+         $currentDate = date("d-m-Y"); 
+       if($date < $currentDate){
+        $array[]=[
+          'title'=>$row->task_title, 
+          'start'=>$row->task_date,
+          'end' => $row->task_due_date,
+          'backgroundColor'=>'#f56954',
+          'borderColor'=>'#f56954'
+        ];
+        }elseif($date == $currentDate){
+          $array[]=[
+          'title'=>$row->task_title, 
+          'start'=>$row->task_date,
+          'end' => $row->task_due_date,
+          'backgroundColor'=>'#0073b7',
+          'borderColor'=>'#0073b7'
+        ];
+        }elseif($date > $currentDate){
+          $array[]=[
+          'title'=>$row->task_title, 
+          'start'=>$row->task_date,
+          'end' => $row->task_due_date,
+          'backgroundColor'=>'#00a65a',
+          'borderColor'=>'#00a65a'
+        ];
+        }
+         
+         }
+      $events =    json_encode($array);
+      //dd($locations);
+@endphp
 <script>
-				
+  //this is called in the below js file 
+  var events = 
+       <?php echo $events; ?>;
+
 </script>
+
+<script src="{{ asset('js/calendarCustom.js')}} "></script>
 @endsection

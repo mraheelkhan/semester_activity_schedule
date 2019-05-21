@@ -23,6 +23,8 @@ Route::group([
 ], function () {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
+    Route::post('tasklist', 'TaskController@index');
+    Route::post('semesterlist', 'SemesterController@index');
   
     Route::group([
       'middleware' => 'auth:api'

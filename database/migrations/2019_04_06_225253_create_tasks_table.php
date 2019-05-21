@@ -17,12 +17,12 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->integer('semester_id');
             $table->string('task_title');
-            $table->string('task_type');
-            $table->string('task_status');
+            $table->string('task_type')->comment('general, teachers, students');
+            $table->string('task_status')->nullable();
             $table->date('task_date');
             $table->date('task_due_date')->nullable();
-            $table->string('isDeleted');
-            $table->string('status');
+            $table->string('isDeleted')->default(0);
+            $table->string('status')->default('active');
             $table->integer('created_by');
             $table->timestamps();
         });
