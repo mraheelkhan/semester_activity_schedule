@@ -12,7 +12,7 @@ class ProfileController extends Controller
     public function dashboard(){
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
-            $data['events'] = Task::all();
+            $data['events'] = Task::where('status', 'active')->where('isDeleted', 0)->get();
             return view('profile.dashboard')->with('data', $data);
         }
         return view('forbidden');
