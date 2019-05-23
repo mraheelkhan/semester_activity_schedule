@@ -31,6 +31,10 @@ $(function() {
         m = date.getMonth(),
         y = date.getFullYear();
     $("#calendar").fullCalendar({
+        // validRange: {
+        //     start: '2019-05-01',
+        //     end: '2019-07-01'
+        // },
         header: {
             left: "prev,next today",
             center: "title",

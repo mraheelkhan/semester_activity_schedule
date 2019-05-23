@@ -18,6 +18,8 @@ class CreateSemestersTable extends Migration
             $table->string('semester_title')->nullable();
             $table->string('semester_year');
             $table->string('semester_type');
+            // $table->date('start_date');
+            // $table->date('end_date');
             $table->string('status')->default('active');
             $table->integer('created_by');
             $table->integer('isDeleted')->default(0);
