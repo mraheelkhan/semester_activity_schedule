@@ -49,7 +49,7 @@ Route::get('/semesters/delete/{id}', 'SemesterController@delete')->name('Semeste
 Route::get('/semesters/activate/{id}', 'SemesterController@activate')->name('SemesterActivate')->middleware('auth');
 Route::get('/semesters/deactivate/{id}', 'SemesterController@deactivate')->name('SemesterDeactivate')->middleware('auth');
 
-// semester 
+// task 
 Route::get('/tasks', 'TaskController@create')->name('Task')->middleware('auth');
 Route::post('/tasks/store', 'TaskController@store')->name('TaskStore')->middleware('auth');
 Route::get('/tasks/delete/{id}', 'TaskController@delete')->name('TaskDelete')->middleware('auth');
