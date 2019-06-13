@@ -51,7 +51,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 					<select name="semester_id" id="semester_id"  class="form-control" value="{{ old('semester_id') }}">
-						<option selected disabled>Select Semester</option>
+						<option selected disabled>Select Session</option>
 						@foreach($semesters as $semester)
 							<option value="{{ $semester->id }}">{{ $semester->semester_type }} {{ $semester->semester_year }}</option>
 						@endforeach
@@ -96,7 +96,7 @@
 						Date
 				  </th>
 				  <th>
-						Semester
+						Session
 				  </th>
 				  <th>
 					Status

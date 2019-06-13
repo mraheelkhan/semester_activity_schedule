@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Program;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -58,6 +59,12 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        $programs = Program::where('status', 'active')->get();
+        return view('auth.register', compact('programs'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -71,6 +78,7 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
+            'batch_id' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -91,6 +99,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'batch_id' => $data['batch_id'],
             'role' => 'user',
             'status' => 'active',
             'password' => Hash::make($data['password']),

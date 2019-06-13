@@ -24,6 +24,7 @@ class AuthController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'phone' => 'required|string',
+            'batch_id' => 'required',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
         ]);
@@ -36,9 +37,11 @@ class AuthController extends Controller
             'status' => "active",
             'phone' => $request->phone,
             'email' => $request->email,
+            'batch_id' => $request->batch_id,
             'password' => bcrypt($request->password)
         ]);
         $user->save();
+        return 'inserted successfully';
         return response()->json([
             'message' => 'Successfully created user!'
         ], 201);

@@ -24,10 +24,22 @@
             </a>
           </li>
       <hr>
+      <li class="nav-item @if(Request::route()->getName() == 'Programs') active @endif">
+        <a class="nav-link" href="{{Route('Programs')}}">
+            <i class="material-icons">building</i>
+            <p>Programs</p>
+          </a>
+      </li>
+      <li class="nav-item @if(Request::route()->getName() == 'Batches') active @endif">
+        <a class="nav-link" href="{{Route('Batches')}}">
+            <i class="material-icons">building</i>
+            <p>Batches</p>
+          </a>
+      </li>
       <li class="nav-item @if(Request::route()->getName() == 'Semester') active @endif">
       <a class="nav-link" href="{{Route('Semester')}}">
           <i class="material-icons">train</i>
-          <p>Semesters</p>
+          <p>Session</p>
         </a>
       </li>
       <li class="nav-item @if(Request::route()->getName() == 'Task') active @endif">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Task;
+use App\Semester;
 use Gate;
 class ProfileController extends Controller
 {
@@ -13,10 +14,24 @@ class ProfileController extends Controller
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
             $data['events'] = Task::where('status', 'active')->where('isDeleted', 0)->get();
+            $data['sessions'] = Semester::where('status', 'active')->where('isDeleted', 0)->get();
             return view('profile.dashboard')->with('data', $data);
         }
         return view('forbidden');
     }
+
+    public function session_events($id){
+        $user = User::class;
+        if(Gate::allows('onlyAdmin', $user)){
+            // $data['events'] = Task::where('status', 'active')->where('isDeleted', 0)->get();
+            $data['events'] = Task::where('semester_id', $id)->get();
+            $data['session'] = Semester::findOrFail($id);
+            return view('profile.events')->with('data', $data);
+        }
+        return view('forbidden');
+    }
+
+
     public function user_profile(){
         $user = Auth::user();
         if($user->role == 'admin'){

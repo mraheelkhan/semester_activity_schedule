@@ -80,6 +80,37 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="program_id" class="col-md-4 col-form-label text-md-right">{{ __('Program') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="program_id" onchange="getBatchesforProgram()"  class="form-control{{ $errors->has('program_id') ? ' is-invalid' : '' }}" name="program_id" value="{{ old('program_id') }}">
+                                    <option disabled selected> Select Program </option>
+                                    @foreach($programs as $program)
+                                        <option value="{{$program->id}}"> {{ $program->program_name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('program_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('program_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="batch_id" class="col-md-4 col-form-label text-md-right">{{ __('Batch') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="batch_id"  class="form-control{{ $errors->has('batch_id') ? ' is-invalid' : '' }}" name="batch_id" value="{{ old('batch_id') }}">
+                                </select>
+                                @if ($errors->has('batch_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('batch_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -116,4 +147,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    function getBatchesforProgram(){
+            var program_id = $('#program_id').val();
+            route_url = " {{ url('/program/getBatchesListByProgramId') }}/" + program_id + "";
+            console.log(program_id);
+        $.ajax({
+            url: route_url,
+            method: "GET",
+            dataType: "json",
+            success:
+                function(data){                  
+                    var html='';
+                    html +='<option value="" disabled selected>Select Batch</option>';
+                    $.each(data, function(index, value) {
+                        html += '<option value="' + value.id + '">' + value.name + '</option>';             
+                    });
+                    console.log(data);
+                    $('#batch_id').html(html);    
+                }
+        });
+    }
+</script>
+
 @endsection

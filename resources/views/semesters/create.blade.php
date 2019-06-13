@@ -24,7 +24,7 @@
 <div class="col-md-12">
 	<div class="card">
 		<div class="card-header card-header-primary">
-		<h4 class="card-title ">Add New Semester	</h4>
+		<h4 class="card-title ">Add New Session	</h4>
 		{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
 		</div>
 		<div class="card-body">
@@ -35,6 +35,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 					<input type="hidden" name="user_id" value="{{auth()->user()->id}}"/>
+					<label>Select Type of Session</label>
 					<select name="semester_type" id="semester_type"  class="form-control">
 						<option selected disabled>Select Type</option>
 						<option value="Fall">Fall</option>
@@ -45,6 +46,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
+						<label>Select Year of Session</label>
 					<select name="semester_year" class="form-control" id="semester_year">
 						<option disabled selected>Select Year</option>
 						<option value="2019">2019</option>
@@ -54,6 +56,18 @@
 						<option value="2023">2023</option>
 						<option value="2024">2024</option>
 					</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label> Select Starting Date of Session</label>
+					<input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date')}}" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+							<label> Select Ending Date of Session</label>
+						<input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date')}}" />
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -71,7 +85,7 @@
 <div class="col-md-12 mt-5">
 		<div class="card">
 		  <div class="card-header card-header-primary">
-			<h4 class="card-title ">Semesters List</h4>
+			<h4 class="card-title ">Session List</h4>
 			<p class="card-category"> </p>
 		  </div>
 		  <div class="card-body">
@@ -80,8 +94,14 @@
 				<thead class=" text-primary">
 				 
 				  <th>
-						Semester Name
-				  </th>
+						Session Name
+					</th>
+					<th>
+						Starting Date
+					</th>
+					<th>
+						Ending Date
+					</th>
 				  <th>
 					Status
 				  </th>
@@ -94,6 +114,12 @@
 				  <tr>
 					<td>
 						{{ $semester->semester_type }} - {{ $semester->semester_year }}  {{ $semester->semester_title }}
+					</td>
+					<td>
+						{{ date('d-m-y', strtotime($semester->semester_start_date))  }}
+					</td>
+					<td>
+							{{ date('d-m-y', strtotime($semester->semester_end_date)) }}
 					</td>
 					<td>
 						@if($semester->status == "active")

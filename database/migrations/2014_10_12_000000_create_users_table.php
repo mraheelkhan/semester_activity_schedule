@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->nullable();
             $table->string('phone')->unique();
             $table->string('role');
+            $table->integer('batch_id')->nullable();
             $table->string('status');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
