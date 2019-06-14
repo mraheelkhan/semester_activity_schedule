@@ -14,16 +14,26 @@
 Route::get('/allurls', function () {
     $array = [
         'all_tasks_list' => 'https://dev.mraheelkhan.com/uolsemester/public/api/auth/tasklist',
-        'all_semesters' => 'http://192.168.10.5/uol_semester/public/api/auth/semesterlist',
+        'all_semesters' => 'https://dev.mraheelkhan.com/uolsemester/public/api/auth/semesterlist',
         'sign_up' => array(
-            'link' => 'http://192.168.10.5/uol_semester/public/api/auth/signup',
+            'link' => 'https://dev.mraheelkhan.com/uolsemester/public/api/auth/signup',
             'method' => 'post',
             'fields' => ['email', 'password', 'password_confirmation', 'username', 'first_name', 'last_name', 'phone', 'batch_id']
         ),
         'login' => array(
-            'link' => 'http://192.168.10.5/uol_semester/public/api/auth/login',
+            'link' => 'https://dev.mraheelkhan.com/uolsemester/public/api/auth/login',
             'method' => 'post',
              'fields' => ['email', 'password']
+        ),
+        'get_programs_list' => array(
+            'link' => 'https://dev.mraheelkhan.com/uolsemester/public/api/getProgramList',
+            'method' => 'get',
+             'fields' => ['']
+        ),
+        'get_batches_list_by_program_id' => array(
+            'link' => 'https://dev.mraheelkhan.com/uolsemester/public/api/getBatchesList',
+            'method' => 'post',
+             'fields' => ['program_id']
         ),
 
     ];

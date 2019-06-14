@@ -32,5 +32,11 @@ Route::group([
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
         Route::get('tasklist', 'TaskController@index');
+        //Route::get('getProgramList', 'AjaxController@getProgramList');
+        
     });
 });
+
+// no authentication required
+Route::get('getProgramList', 'AjaxController@getProgramList');
+Route::post('getBatchesList', 'AjaxController@getBatchesListByProgramIdAndroid');

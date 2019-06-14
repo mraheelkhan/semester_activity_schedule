@@ -18,6 +18,7 @@ class TaskResource extends JsonResource
         return [
             'id'=> $this->id,
             'task_title'=> $this->task_title,
+            'task_description'=> "this is dummy description for the testing of dialog box API.",
             'task_date'=> strtotime($this->task_date) * 1000,
         ];
     }

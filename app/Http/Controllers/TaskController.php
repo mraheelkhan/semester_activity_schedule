@@ -29,6 +29,7 @@ class TaskController extends Controller
 
         }
        
+        // return response()->json($all, 200);
         return response(new TaskResourceCollection($all));
     }
 
