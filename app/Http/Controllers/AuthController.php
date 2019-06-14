@@ -36,7 +36,7 @@ class AuthController extends Controller
                 'message' => 'Validation error.',
                 'data' => $validator->errors()
             ];
-            return response()->json($response_data, 401);
+            return response()->json($response_data);
         }
         $user = new User([
             'username' => $request->username,
@@ -82,7 +82,7 @@ class AuthController extends Controller
                 'message' => 'Validation error.',
                 'data' => $validator->errors()
             ];
-            return response()->json($response_data,  200);
+            return response()->json($response_data);
         }
 
         $credentials = request(['email', 'password']);
@@ -91,7 +91,7 @@ class AuthController extends Controller
                 'success' => 0,
                 'message' => 'Email or Password is incorrect.',
             ];
-            return response()->json($response_data,  401);
+            return response()->json($response_data);
         }
                 
         $user = $request->user();

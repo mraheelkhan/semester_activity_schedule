@@ -20,7 +20,15 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $all = Task::where('status', 1)->with('user')->with('semester')->get();
+        $user_role = Auth::user()->role;
+        if ($user_role == 'user'){
+            $all = Task::where('status', 'active')->where('task_type', 'General')->where('isDeleted', 0)->orWhere('task_type', 'Students')->with('semester')->get();
+        }
+        else {
+            $all = Task::where('status', 'active')->where('task_type', 'General')->where('isDeleted', 0)->orWhere('task_type', 'Teachers')->with('semester')->get();
+
+        }
+       
         return response(new TaskResourceCollection($all));
     }
 

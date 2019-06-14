@@ -13,7 +13,7 @@
 \
 Route::get('/allurls', function () {
     $array = [
-        'all_tasks_list' => 'http://192.168.10.5/uol_semester/public/api/auth/tasklist',
+        'all_tasks_list' => 'https://dev.mraheelkhan.com/uolsemester/public/api/auth/tasklist',
         'all_semesters' => 'http://192.168.10.5/uol_semester/public/api/auth/semesterlist',
         'sign_up' => array(
             'link' => 'http://192.168.10.5/uol_semester/public/api/auth/signup',
