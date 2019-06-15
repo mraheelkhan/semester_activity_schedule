@@ -38,5 +38,5 @@ Route::group([
 });
 
 // no authentication required
-Route::get('getProgramList', 'AjaxController@getProgramList');
+Route::get('getProgramList', 'AjaxController@getProgramBatchList');
 Route::post('getBatchesList', 'AjaxController@getBatchesListByProgramIdAndroid');

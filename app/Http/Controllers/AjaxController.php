@@ -9,8 +9,8 @@ use App\User;
 use App\Task;
 class AjaxController extends Controller
 {
-    public function getProgramList(){
-        $programs = Program::where('status', 'active')->get();
+    public function getProgramBatchList(){
+        $programs = Batch::where('status', 'active')->with('programs')->get();
         json_encode($programs);
         return response()->json($programs);
     }
