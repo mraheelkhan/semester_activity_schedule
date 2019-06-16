@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Session;
 class LoginController extends Controller
 {
     /*
@@ -40,6 +41,7 @@ class LoginController extends Controller
         // Check user role
         switch ($role) {
             case 'admin':
+            case 'teacher':
                     return '/admin';
                 break;
             case 'user':

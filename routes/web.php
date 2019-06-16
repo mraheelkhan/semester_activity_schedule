@@ -46,6 +46,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'ProfileController@dashboard')->name('home');
+Route::get('/logout', 'HomeController@logout')->name('Logout');
 
 //============================================================
 //======================== ADMIN Routes ======================
