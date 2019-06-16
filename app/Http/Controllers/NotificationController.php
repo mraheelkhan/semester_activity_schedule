@@ -12,7 +12,7 @@ class NotificationController extends Controller
 {
     public function create(){
         $user = User::class;
-        if(Gate::allows('onlyAdmin', $user)){
+        if(Gate::allows('onlyAdmin', $user)  || Gate::allows('onlyAdminTeacher', $user)){
             $batches = Batch::all();
             $programs = Program::where('status', 'active')->get();
             return view('notifications.create')->with('batches', $batches)->with('programs', $programs);  

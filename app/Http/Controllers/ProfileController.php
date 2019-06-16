@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function dashboard(){
         $user = User::class;
-        if(Gate::allows('onlyAdmin', $user)){
+        if(Gate::allows('onlyAdmin', $user) || Gate::allows('onlyAdminTeacher', $user)){
             $data['events'] = Task::where('status', 'active')->where('isDeleted', 0)->get();
             $data['sessions'] = Semester::where('status', 'active')->where('isDeleted', 0)->get();
             return view('profile.dashboard')->with('data', $data);
@@ -22,7 +22,7 @@ class ProfileController extends Controller
 
     public function session_events($id){
         $user = User::class;
-        if(Gate::allows('onlyAdmin', $user)){
+        if(Gate::allows('onlyAdmin', $user)  || Gate::allows('onlyAdminTeacher', $user)){
             // $data['events'] = Task::where('status', 'active')->where('isDeleted', 0)->get();
             $data['events'] = Task::where('semester_id', $id)->get();
             $data['session'] = Semester::findOrFail($id);
@@ -34,7 +34,7 @@ class ProfileController extends Controller
 
     public function user_profile(){
         $user = Auth::user();
-        if($user->role == 'admin'){
+        if(Gate::allows('onlyAdmin', $user)  || Gate::allows('onlyAdminTeacher', $user)){
             return view('profile.index', compact('user'));
         }
         return view('forbidden', compact('user'));

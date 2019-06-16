@@ -88,8 +88,6 @@ class AuthController extends Controller
 
         $credentials = request(['email', 'password']);
         if(!Auth::attempt($credentials)){
-
-            
             $response_data=[
                 'success' => 0,
                 'message' => 'Email or Password is incorrect.',

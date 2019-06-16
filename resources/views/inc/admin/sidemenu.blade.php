@@ -18,6 +18,7 @@
         </a>
       </li> 
       <hr>
+      @can('onlyAdmin', Auth::user())
       <li class="nav-item @if(Request::route()->getName() == 'Programs') active @endif">
         <a class="nav-link" href="{{Route('Programs')}}">
             <i class="material-icons">building</i>
@@ -42,24 +43,28 @@
             <p>Tasks</p>
           </a>
       </li>
+      @endcan
       <li class="nav-item @if(Request::route()->getName() == 'NotificationsCreate') active @endif">
           <a class="nav-link" href="{{route('NotificationsCreate')}}">
             <i class="material-icons">events</i>
             <p>Notifications</p>
           </a>
       </li>
+      
       <li class="nav-item @if(Request::route()->getName() == 'Profile') active @endif ">
       <a class="nav-link" href="{{ route('Profile')}}">
           <i class="material-icons">person</i>
           <p>User Profile</p>
         </a>
       </li>
+      @can('onlyAdmin', Auth::user())
       <li class="nav-item @if(Request::route()->getName() == 'UserList') active @endif ">
       <a class="nav-link" href="{{ route('UserList')}}">
           <i class="material-icons">people</i>
           <p>admin/user/list</p>
         </a>
       </li>
+      @endcan
     </ul>
   </div>
 </div>
