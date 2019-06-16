@@ -33,7 +33,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             $response_data=[
                 'success' => 0,
-                'message' => 'Validation error.',
+                'message' => 'Validation error!, username, phone or email is incorrect or already existed.',
                 'data' => $validator->errors()
             ];
             return response()->json($response_data);
