@@ -44,7 +44,7 @@ class AuthController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'role' => "user",
-            'status' => "active",
+            'status' => "inactive",
             'phone' => $request->phone,
             'email' => $request->email,
             'batch_id' => $request->batch_id,

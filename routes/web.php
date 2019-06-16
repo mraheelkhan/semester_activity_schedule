@@ -90,16 +90,20 @@ Route::get('/program/deactivate/{id}', 'ProgramController@deactivate')->name('Pr
 Route::get('/program/getBatchesListByProgramId/{id}', 'AjaxController@getBatchesListByProgramId')->name('GetProgramsList');
 
 // notifications 
-Route::get('/notifications', 'NotificationController@create')->name('Notifications')->middleware('auth');
-Route::post('/notification/store', 'NotificationController@store')->name('NotificationStore')->middleware('auth');
+Route::get('/notifications', 'NotificationController@create')->name('NotificationsCreate')->middleware('auth');
+Route::post('/notification/store', 'NotificationController@notification')->name('NotificationStore')->middleware('auth');
 Route::get('/notification/delete/{id}', 'NotificationController@delete')->name('NotificationStoreDelete')->middleware('auth');
 Route::get('/notification/activate/{id}', 'NotificationController@activate')->name('NotificationStoreActivate')->middleware('auth');
 Route::get('/notification/deactivate/{id}', 'NotificationController@deactivate')->name('NotificationStoreDeactivate')->middleware('auth');
 
-
-
+// admin routes
+Route::get('admin/user/list','AdminController@list')->name('UserList')->middleware('auth');
+Route::post('admin/user/delete/','AdminController@delete')->name('UserDelete')->middleware('auth');
+Route::get('admin/user/activate/{id}','AdminController@activate')->name('UserActivate')->middleware('auth');
+Route::get('admin/user/deactivate/{id}','AdminController@deactivate')->name('UserDeactivate')->middleware('auth');
+Route::get('/admin/user/add', 'AdminController@create')->name('UserAdd')->middleware('auth');
+Route::post('/admin/user/store', 'AdminController@store')->name('UserStore')->middleware('auth');
 //============================================================
 //======================== API Routes ======================
 Route::resource('/alltasks', 'TaskController');
-
 Route::resource('/allsemesters', 'SemesterController');

@@ -16,13 +16,7 @@
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
         </a>
-      </li>
-      <li class="nav-item @if(Request::route()->getName() == 'ListingList') active @endif">
-          <a class="nav-link" href="#">
-              <i class="material-icons">fullscreen</i>
-              <p>All Tasks</p>
-            </a>
-          </li>
+      </li> 
       <hr>
       <li class="nav-item @if(Request::route()->getName() == 'Programs') active @endif">
         <a class="nav-link" href="{{Route('Programs')}}">
@@ -43,15 +37,27 @@
         </a>
       </li>
       <li class="nav-item @if(Request::route()->getName() == 'Task') active @endif">
-      <a class="nav-link" href="{{route('Task')}}">
-          <i class="material-icons">events</i>
-          <p>Tasks</p>
-        </a>
+          <a class="nav-link" href="{{route('Task')}}">
+            <i class="material-icons">events</i>
+            <p>Tasks</p>
+          </a>
+      </li>
+      <li class="nav-item @if(Request::route()->getName() == 'NotificationsCreate') active @endif">
+          <a class="nav-link" href="{{route('NotificationsCreate')}}">
+            <i class="material-icons">events</i>
+            <p>Notifications</p>
+          </a>
       </li>
       <li class="nav-item @if(Request::route()->getName() == 'Profile') active @endif ">
       <a class="nav-link" href="{{ route('Profile')}}">
           <i class="material-icons">person</i>
           <p>User Profile</p>
+        </a>
+      </li>
+      <li class="nav-item @if(Request::route()->getName() == 'UserList') active @endif ">
+      <a class="nav-link" href="{{ route('UserList')}}">
+          <i class="material-icons">people</i>
+          <p>admin/user/list</p>
         </a>
       </li>
     </ul>

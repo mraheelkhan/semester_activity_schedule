@@ -33,7 +33,6 @@ Route::group([
         Route::get('user', 'AuthController@user');
         Route::get('tasklist', 'TaskController@index');
         //Route::get('getProgramList', 'AjaxController@getProgramList');
-        
     });
 });
 

@@ -101,7 +101,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'batch_id' => $data['batch_id'],
             'role' => 'user',
-            'status' => 'active',
+            'status' => 'inactive',
             'password' => Hash::make($data['password']),
         ]);
     }
