@@ -85,15 +85,26 @@ class AuthController extends Controller
             return response()->json($response_data);
         }
 
+
         $credentials = request(['email', 'password']);
         if(!Auth::attempt($credentials)){
+
+            
             $response_data=[
                 'success' => 0,
                 'message' => 'Email or Password is incorrect.',
             ];
             return response()->json($response_data);
         }
-                
+        
+        if(Auth::user()->status == "inactive"){
+           
+            $response_data=[
+                'success' => 0,
+                'message' => 'please contact your administrator to activate your account',
+            ];
+            return response()->json($response_data);
+        }
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;

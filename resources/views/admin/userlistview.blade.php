@@ -24,6 +24,7 @@
                             <th>Name</th>
                             <th>role</th>
                             <th>email</th>
+                            <th>status</th>
                             <th> Action </th>
                         </thead>
                         <tbody>
@@ -37,6 +38,7 @@
                                     <td>{{$user->first_name}} {{$user->last_name}}</td>
                                     <td>{{($user->role == 'user' ? 'student' : $user->role )}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->status}}</td>
                                 <td> <form method="post" action="{{ action('AdminController@delete')}}">
                                             
                                 <input type="hidden" name="user_id" value="{{ $user->id }}"/>

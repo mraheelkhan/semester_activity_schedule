@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function list()
     {
-    	$user = User::all();
+    	$user = User::orderBy('id', 'desc')->get();
     	return view('admin.userlistview')->with('data', $user);
 	}
 	
