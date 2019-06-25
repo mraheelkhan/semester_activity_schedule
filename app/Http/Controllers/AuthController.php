@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+use App\Batch;
 use Validator;
 class AuthController extends Controller
 {
@@ -27,7 +28,7 @@ class AuthController extends Controller
             'phone' => 'required|string|unique:users',
             'batch_id' => 'required',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|min:8|string|confirmed'
         ]);
 
         if ($validator->fails()) {
@@ -109,8 +110,13 @@ class AuthController extends Controller
         if ($request->remember_me)
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
+        // generating program_id
+        $userBatch = auth()->user()->batch_id;
+        $batch_id = Batch::findOrFail($userBatch);
+        $programId = $batch_id->program_id;
         return response()->json([
             'success' => 1,
+            'program_id' => $programId,
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
@@ -140,7 +146,7 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        return response()->json(auth()->user());
     }
 
 

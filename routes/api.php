@@ -25,17 +25,19 @@ Route::group([
     Route::post('signup', 'AuthController@signup');
     Route::post('tasklist', 'TaskController@index');
     Route::post('semesterlist', 'SemesterController@index');
-  
+    
     Route::group([
-      'middleware' => 'auth:api'
+        'middleware' => 'auth:api'
     ], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
         Route::get('tasklist', 'TaskController@index');
+        Route::get('verifycode', 'CourseController@verifyCode');
         //Route::get('getProgramList', 'AjaxController@getProgramList');
     });
 });
 
+Route::post('getCoursesList', 'AjaxController@getCoursesListByProgramIdAndroid1');
 // no authentication required
 Route::get('getProgramList', 'AjaxController@getProgramBatchList');
 Route::post('getBatchesList', 'AjaxController@getBatchesListByProgramIdAndroid');

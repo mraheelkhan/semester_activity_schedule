@@ -35,6 +35,16 @@ Route::get('/allurls', function () {
             'method' => 'post',
              'fields' => ['program_id']
         ),
+        'getCoursesList' => array(
+            'link' => 'https://dev.mraheelkhan.com/uolsemester/public/api/auth/getCoursesList',
+            'method' => 'post',
+             'fields' => []
+        ),
+        'verifycode' => array(
+            'link' => 'https://dev.mraheelkhan.com/uolsemester/public/api/auth/verifycode',
+            'method' => 'get',
+             'fields' => ['course_id', 'course_code']
+        ),
 
     ];
     return response($array);
@@ -89,6 +99,7 @@ Route::get('/program/delete/{id}', 'ProgramController@delete')->name('ProgramDel
 Route::get('/program/activate/{id}', 'ProgramController@activate')->name('ProgramActivate')->middleware('auth');
 Route::get('/program/deactivate/{id}', 'ProgramController@deactivate')->name('ProgramDeactivate')->middleware('auth');
 Route::get('/program/getBatchesListByProgramId/{id}', 'AjaxController@getBatchesListByProgramId')->name('GetProgramsList');
+Route::get('/program/getCoursesListByProgramId/{id}', 'AjaxController@getCoursesListByProgramId')->name('GetProgramsList');
 
 // notifications 
 Route::get('/notifications', 'NotificationController@create')->name('NotificationsCreate')->middleware('auth');
@@ -96,6 +107,13 @@ Route::post('/notification/store', 'NotificationController@notification')->name(
 Route::get('/notification/delete/{id}', 'NotificationController@delete')->name('NotificationStoreDelete')->middleware('auth');
 Route::get('/notification/activate/{id}', 'NotificationController@activate')->name('NotificationStoreActivate')->middleware('auth');
 Route::get('/notification/deactivate/{id}', 'NotificationController@deactivate')->name('NotificationStoreDeactivate')->middleware('auth');
+
+// courses  
+Route::get('/courses', 'CourseController@create')->name('Courses')->middleware('auth');
+Route::post('/course/store', 'CourseController@store')->name('CourseStore')->middleware('auth');
+Route::get('/course/delete/{id}', 'CourseController@delete')->name('CourseDelete')->middleware('auth');
+Route::get('/course/activate/{id}', 'CourseController@activate')->name('CourseActivate')->middleware('auth');
+Route::get('/course/deactivate/{id}', 'CourseController@deactivate')->name('CourseDeactivate')->middleware('auth');
 
 // admin routes
 Route::get('admin/user/list','AdminController@list')->name('UserList')->middleware('auth');

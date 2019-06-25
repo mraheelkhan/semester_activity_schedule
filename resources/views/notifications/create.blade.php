@@ -138,7 +138,7 @@
 	  <script>
 	function getBatchesforProgram(){
             var program_id = $('#program_id').val();
-            route_url = " {{ url('/program/getBatchesListByProgramId') }}/" + program_id + "";
+            route_url = " {{ url('program/getCoursesListByProgramId') }}/" + program_id + "";
             console.log(program_id);
         $.ajax({
             url: route_url,
@@ -147,9 +147,9 @@
             success:
                 function(data){                  
                     var html='';
-                    html +='<option value="" disabled selected>Select Batch</option>';
+                    html +='<option value="" disabled selected>Select Course</option>';
                     $.each(data, function(index, value) {
-                        html += '<option value="' + value.id + '">' + value.name + '</option>';             
+                        html += '<option value="' + value.id + '">' + value.course_name + ' - ' + value.user.first_name + ' ' + value.user.last_name + ' | ' + value.semester.semester_type  + ' ' + value.semester.semester_year + '</option>';             
                     });
                     console.log(data);
                     $('#batch_id').html(html);    

@@ -37,6 +37,12 @@
           <p>Session</p>
         </a>
       </li>
+      <li class="nav-item @if(Request::route()->getName() == 'Courses') active @endif">
+        <a class="nav-link" href="{{Route('Courses')}}">
+            <i class="material-icons">train</i>
+            <p>Courses</p>
+          </a>
+        </li>
       <li class="nav-item @if(Request::route()->getName() == 'Task') active @endif">
           <a class="nav-link" href="{{route('Task')}}">
             <i class="material-icons">events</i>
