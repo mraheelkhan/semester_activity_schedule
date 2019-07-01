@@ -100,7 +100,7 @@ class NotificationController extends Controller
         $course = Course::findOrFail($course_id);
 
         $title = "UOL - " . $course->course_name . " by " . auth()->user()->first_name;
-        $topic = "/topics/" . $course;
+        $topic = "/topics/" . $course_id;
         
         $notification = array(
             'task_title' => $title,

@@ -105,7 +105,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 					<select class="form-control" name="course_id" id="course_id">
-						<option disabled> Select your batch</option>
+						<option disabled> Select your Course</option>
 
 					</select>
 					</div>
