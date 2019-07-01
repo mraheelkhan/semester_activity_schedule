@@ -24,7 +24,7 @@
 <div class="col-md-12">
 	<div class="card">
 		<div class="card-header card-header-primary">
-		<h4 class="card-title ">Send New Notification	</h4>
+		<h4 class="card-title ">Send Notification to Batch	</h4>
 		{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
 		</div>
 		<div class="card-body">
@@ -40,7 +40,7 @@
 				</div>
 				<div class="col-md-6">
 						<div class="form-group">
-						<input type="text" name="description" id="description" value="{{old('description')}}"  class="form-control" placeholder="Enter Batch Description"/>
+						<input type="text" name="description" id="description" value="{{old('description')}}"  class="form-control" placeholder="Enter Description"/>
 						</div>
 				</div>
 				<div class="col-md-6">
@@ -75,6 +75,53 @@
 	</div>
 </div>
 
+<div class="col-md-12 mt-5">
+	<div class="card">
+		<div class="card-header card-header-primary">
+		<h4 class="card-title ">Send Notification to Course	</h4>
+		{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
+		</div>
+		<div class="card-body">
+		<div class="">
+		<form action="{{ route('NotificationCourseStore') }}" method="post">
+			<div class="row">
+				@csrf
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="text" name="description" id="description" value="{{old('description')}}"  class="form-control" placeholder="Enter Description"/>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+					<input type="hidden" name="user_id" value="{{auth()->user()->id}}"/>
+					<select name="programc_id" id="programc_id" onchange="getCoursesforProgram()"  class="form-control">
+						<option selected disabled>Select Program</option>
+						@foreach($programs as $program)
+							<option value="{{ $program->id }}"> {{ $program->program_name }} </option>
+						@endforeach
+					</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+					<select class="form-control" name="course_id" id="course_id">
+						<option disabled> Select your batch</option>
+
+					</select>
+					</div>
+				</div>
+				
+				<div class="col-md-12">
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary pull-right" id="ajaxSubmit"/>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
  {{-- 
 	<div class="col-md-12 mt-5">
 		<div class="card">
@@ -135,11 +182,31 @@
 		</div>
 	  </div>
 --}}
-	  <script>
+<script>
 	function getBatchesforProgram(){
             var program_id = $('#program_id').val();
-            route_url = " {{ url('program/getCoursesListByProgramId') }}/" + program_id + "";
+            route_url = " {{ url('/program/getBatchesListByProgramId') }}/" + program_id + "";
             console.log(program_id);
+        $.ajax({
+            url: route_url,
+            method: "GET",
+            dataType: "json",
+            success:
+                function(data){                  
+                    var html='';
+                    html +='<option value="" disabled selected>Select Batch</option>';
+                    $.each(data, function(index, value) {
+                        html += '<option value="' + value.id + '">' + value.name + '</option>';             
+                    });
+                    console.log(data);
+                    $('#batch_id').html(html);    
+                }
+        });
+    }				
+	function getCoursesforProgram(){
+            var programc_id = $('#programc_id').val();
+            route_url = " {{ url('program/getCoursesListByProgramId') }}/" + programc_id + "";
+            console.log(programc_id);
         $.ajax({
             url: route_url,
             method: "GET",
@@ -152,7 +219,7 @@
                         html += '<option value="' + value.id + '">' + value.course_name + ' - ' + value.user.first_name + ' ' + value.user.last_name + ' | ' + value.semester.semester_type  + ' ' + value.semester.semester_year + '</option>';             
                     });
                     console.log(data);
-                    $('#batch_id').html(html);    
+                    $('#course_id').html(html);    
                 }
         });
     }			

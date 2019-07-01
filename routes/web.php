@@ -104,6 +104,7 @@ Route::get('/program/getCoursesListByProgramId/{id}', 'AjaxController@getCourses
 // notifications 
 Route::get('/notifications', 'NotificationController@create')->name('NotificationsCreate')->middleware('auth');
 Route::post('/notification/store', 'NotificationController@notification')->name('NotificationStore')->middleware('auth');
+Route::post('/notification/store/course', 'NotificationController@notificationcourse')->name('NotificationCourseStore')->middleware('auth');
 Route::get('/notification/delete/{id}', 'NotificationController@delete')->name('NotificationStoreDelete')->middleware('auth');
 Route::get('/notification/activate/{id}', 'NotificationController@activate')->name('NotificationStoreActivate')->middleware('auth');
 Route::get('/notification/deactivate/{id}', 'NotificationController@deactivate')->name('NotificationStoreDeactivate')->middleware('auth');

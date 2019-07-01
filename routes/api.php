@@ -32,7 +32,7 @@ Route::group([
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
         Route::get('tasklist', 'TaskController@index');
-        Route::get('verifycode', 'CourseController@verifyCode');
+        Route::post('verifycode', 'CourseController@verifyCode');
         //Route::get('getProgramList', 'AjaxController@getProgramList');
     });
 });
